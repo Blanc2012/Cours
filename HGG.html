@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<style>
+	
+	body {
+		background-image: url('images/im2.png');
+		background-size: contain;
+		background-position: center;
+		background-repeat: repeat;
+		padding: 20px;
+		min-height:100vh;
+		margin: 0;
+    }
+	.zone-trigger-haut {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 30px; 
+        background: transparent;
+        z-index: 998;
+    }
+	.menu-top {
+        position: fixed;
+        top: -80px; 
+        left: 0;
+        width: 100%;  <!--pourcentage de la largeur -->
+        background: rgba(255, 255, 255, 0.95);  <!-- les trois premier sont des couleurs et le dernier c'est l'opacité-->
+        backdrop-filter: blur(10px);   <!-- rend flou ce qui a derrière les textes, intensité du flou-->
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); <!-- déplacement rorizon, verticale, niveau flou, couleur-->
+        padding: 20px 0;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); <!-- transition animation, quantité, duré la manière-->
+        z-index: 999; <!-- ordre de superposition-->
+    }
+	.menu-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex; <!--aligner les éléments facilement en ligne ou en colonn-->
+        justify-content: space-between; <!--Distribue les éléments horizontalement avec un espace égal entre eux-->
+        align-items: center;
+        padding: 0 20px;
+		height: 100%;
+		border-radius: 10px;
+    }
+	.menu-top.visible {
+		top:0;
+	}
+	.mm {
+		padding: 10px ;
+		background: #9E9E9E;
+	}
+	.menu-content a {
+        text-decoration: none;
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        padding: 8px 14px;
+        border-radius: 8px;
+        display: inline-block;
+        border: 2px solid #34495e;
+    }
+	</style>
+	
+	<head>
+	
+	
+	</head>
+	
+	<body>
+		<div class="zone-trigger-haut" id="zonetrigger"></div>
+	<nav class="menu-top" id="menutop" >
+	<div class="menu-content mm">
+	<a href="Cours.html">Acceuil</a> </div>
+	</nav>
+	
+	
+	
+		<script>
+	const zonetrigger = document.getElementById('zonetrigger'); <!--variable constante, HTML un élément dont l’attribut id est zoneTrigger-->
+    const menutop = document.getElementById('menutop');
+	let timeoutMenu;    <!-- crée une varible qui peut changer>
+	let menuEstVisible = false; <!-- la valeur est fausse-->
+	
+	zonetrigger.addEventListener('mouseenter', () => {    <!-- un évènement se déclenche lorsqu'on detecte mouvement souris dans zonetrigger-->
+		clearTimeout(timeoutMenu); montrerMenu();
+        });
+	menutop.addEventListener('mouseenter', () => {
+        clearTimeout(timeoutMenu);
+		});
+	menutop.addEventListener('mouseleave', () => { 
+        cacherMenuAvecDelai();
+		});
+	function montrerMenu() {
+        menutop.classList.add('visible');
+        menuEstVisible = true;
+    }
+	function cacherMenuAvecDelai() {
+        timeoutMenu = setTimeout(() => {
+            menutop.classList.remove('visible');
+            menuEstVisible = false;
+			},500);}
+
+	</script>
+	</body>
+
+</html>
